@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.medialab.DashboardController">
+   <children>
+      <SplitPane dividerPositions="0.20155902004454343" layoutY="1.0" prefHeight="600.0" prefWidth="900.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="CENTER" layoutX="-1.0" prefHeight="598.0" prefWidth="178.0">
+                     <children>
+                        <Label fx:id="totalCategoriesLabel" text="Label">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalDocumentsLabel" text="Label">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="followedDocumentsLabel" text="Label">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TabPane fx:id="mainTabPane" layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="714.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Documents">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="427.0" prefWidth="274.0">
+                                 <children>
+                                    <HBox layoutX="52.0" layoutY="33.0" prefHeight="25.0" prefWidth="608.0" spacing="15.0">
+                                       <children>
+                                          <TextField fx:id="searchTitleField" promptText="Search by Title" />
+                                          <TextField fx:id="searchAuthorField" promptText="Search by Author" />
+                                          <ComboBox fx:id="filterCategoryCombo" prefWidth="150.0" promptText="Search by Category" />
+                                          <Button mnemonicParsing="false" onAction="#handleSearch" text="Search" />
+                                          <Button fx:id="handleClear" mnemonicParsing="false" onAction="#handleClear" text="Clear" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="documentTable" layoutX="27.0" layoutY="80.0" prefHeight="411.0" prefWidth="657.0">
+                                      <columns>
+                                        <TableColumn fx:id="docTitleColumn" prefWidth="238.0" text="Title" />
+                                        <TableColumn fx:id="docAuthorColumn" prefWidth="142.0" text="Author" />
+                                          <TableColumn fx:id="docCategoryColumn" prefWidth="125.0" text="Category" />
+                                          <TableColumn fx:id="docDateColumn" prefWidth="93.0" text="Date" />
+                                          <TableColumn fx:id="docVersionColumn" prefWidth="58.0" text="Version" />
+                                      </columns>
+                                    </TableView>
+                                    <HBox layoutX="73.0" layoutY="518.0" prefHeight="32.0" prefWidth="565.0" spacing="20.0">
+                                       <children>
+                                          <Button fx:id="viewDocumentButton" mnemonicParsing="false" onAction="#handleViewDocument" text="View" />
+                                          <Button fx:id="editDocumentButton" mnemonicParsing="false" onAction="#handleEditDocument" text="Edit" />
+                                          <Button fx:id="deleteDocumentButton" mnemonicParsing="false" onAction="#handleDeleteDocument" text="Delete" />
+                                          <Button fx:id="followButton" mnemonicParsing="false" onAction="#handleFollowDocument" text="Follow" />
+                                          <Button fx:id="unfollowButton" mnemonicParsing="false" onAction="#handleUnfollowDocument" text="Unfollow" />
+                                          <Button fx:id="createDocumentButton" mnemonicParsing="false" onAction="#handleCreateDocument" text="New Document" />
+                                          <Button fx:id="versionHistoryButton" mnemonicParsing="false" onAction="#handleVersionHistory" text="Version History" />
+                                       </children>
+                                    </HBox>
+                                 </children></AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab fx:id="categoriesTab" text="Categories">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="categoryTable" layoutX="14.0" layoutY="14.0" prefHeight="490.0" prefWidth="685.0">
+                                      <columns>
+                                        <TableColumn fx:id="categoryNameColumn" prefWidth="684.0" text="Categories" />
+                                      </columns>
+                                    </TableView>
+                                    <TextField fx:id="newCategoryField" layoutX="99.0" layoutY="516.0" prefHeight="25.0" prefWidth="316.0" />
+                                    <Text fx:id="categoryTextField" layoutX="14.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Category" />
+                                    <Button fx:id="newCategoryButton" layoutX="424.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleAddCategory" text="Add" />
+                                    <Button fx:id="renameCategoryButton" layoutX="569.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleRenameCategory" text="Rename" />
+                                    <Button fx:id="deleteCategoryButton" layoutX="639.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleDeleteCategory" text="Delete" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab fx:id="usersTab" text="Users">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="userTable" layoutX="20.0" layoutY="21.0" prefHeight="268.0" prefWidth="660.0">
+                                      <columns>
+                                        <TableColumn fx:id="userNameColumn" prefWidth="328.0" text="Username" />
+                                        <TableColumn fx:id="userRoleColumn" prefWidth="331.0" text="User Category" />
+                                      </columns>
+                                    </TableView>
+                                    <ListView fx:id="categorySelectionList" accessibleText="Categories" layoutX="265.0" layoutY="329.0" prefHeight="175.0" prefWidth="200.0" />
+                                    <TextField fx:id="userUsernameField" layoutX="87.0" layoutY="403.0" />
+                                    <Text layoutX="20.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+                                    <PasswordField fx:id="userPasswordField" layoutX="87.0" layoutY="439.0" />
+                                    <Text layoutX="20.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+                                    <ComboBox fx:id="userRoleComboBox" layoutX="87.0" layoutY="478.0" prefWidth="150.0" />
+                                    <Text layoutX="20.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role" />
+                                    <TextField fx:id="userLastNameField" layoutX="88.0" layoutY="365.0" />
+                                    <TextField fx:id="userFirstNameField" layoutX="88.0" layoutY="329.0" />
+                                    <Text layoutX="20.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" />
+                                    <Text layoutX="20.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" />
+                                    <Button fx:id="addUserButton" layoutX="492.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleAddUser" text="Add User" />
+                                    <Button layoutX="581.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleDeleteUser" text="Delete User" />
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

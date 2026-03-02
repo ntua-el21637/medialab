@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "firstName": "Media",
+      "lastName": "Lab",
+      "role": "ADMIN",
+      "username": "medialab",
+      "password": "medialab_2025",
+      "accessibleCategories": [],
+      "watchedDocuments": {}
+    }
+  ],
+  "documents": [],
+  "categories": []
+}
